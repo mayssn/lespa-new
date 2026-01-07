@@ -4,7 +4,6 @@ import "./Branches.css";
 
 import { sanity } from "../../sanity/client";
 import { createImageUrlBuilder } from "@sanity/image-url";
-// OverlayContext is not available, so overlay functionality is disabled.
 
 const builder = createImageUrlBuilder(sanity);
 const urlFor = (src: any) =>
@@ -76,8 +75,6 @@ const Branches = () => {
         {(data.list || []).map((b, idx) => {
           const callNumber = b.callContact?.trim() || b.telephone?.trim() || "";
           const waNumber = b.whatsappContact?.trim() || "";
-          // If you want branch-specific: use "access-abdoun" / "access-sweifieh"
-          // For one overlay: "find-us"
 
           return (
             <article key={`${b.title}-${idx}`} className="branchCard">
@@ -155,12 +152,6 @@ const Branches = () => {
                     Open in Maps
                   </button>
                 )}
-
-                {/* Always show under Open in Maps */}
-
-                <button className="lostLink" type="button" disabled>
-                  Are you lost?
-                </button>
               </div>
             </article>
           );

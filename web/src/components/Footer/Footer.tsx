@@ -23,9 +23,9 @@ const FooterLine = ({ item }) => {
   if (item.link.type === "internal") {
     return (
       <div className="footerLine">
-        <Link className="footerLink" to={href}>
+        <a className="footerLink" href={href}>
           {item?.line}
-        </Link>
+        </a>
       </div>
     );
   }

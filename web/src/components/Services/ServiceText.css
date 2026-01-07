@@ -1,0 +1,58 @@
+/* ========== SERVICE TEXT (ACCORDION CONTENT) ========== */
+
+.serviceTextWrap {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+  align-items: start;
+  width: 100%;
+}
+
+/* when there is NO image, the grid collapses naturally */
+.serviceTextWrap:not(:has(.serviceTextPhoto)) {
+  grid-template-columns: 1fr;
+}
+
+/* image */
+.serviceTextPhoto {
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* text */
+.serviceTextContent {
+  font-size: 17px;
+  margin: 14px 0;
+  color: rgba(58, 53, 53, 0.55);
+  line-height: 1.7;
+}
+
+/* portable text paragraphs */
+.serviceTextContent p {
+  margin: 0 0 14px;
+}
+
+/* links inside text */
+.serviceTextContent a {
+  color: #7fa3ad;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(127, 163, 173, 0.35);
+}
+
+.serviceTextContent a:hover {
+  border-bottom-color: rgba(127, 163, 173, 0.7);
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 720px) {
+  .serviceTextWrap {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .serviceTextPhoto {
+    max-height: 220px;
+  }
+}

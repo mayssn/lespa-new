@@ -1,0 +1,106 @@
+/* ===== MENU WRAP ===== */
+.serviceMenu {
+  padding-top: 0;
+}
+
+.serviceMenuSection {
+  margin: 0;
+}
+
+/* ===== LIST ===== */
+.menuList {
+  display: flex;
+  flex-direction: column;
+}
+
+/* each row */
+.menuRow {
+  padding: 0px 0 22px;
+}
+
+/* top line: left title, right meta */
+.menuRowTop {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 18px;
+  align-items: baseline;
+}
+
+.menuItemTitle {
+  font-weight: 400;
+  font-size: 25px; /* Image 2-ish */
+  letter-spacing: 0.15px;
+  color: #7fa3ad;
+  text-align: left;
+}
+
+/* right side duration + price */
+.menuRight {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 22px;
+  font-size: 16px; /* smaller */
+  color: rgba(63, 63, 63, 0.6);
+}
+
+.menuDuration {
+  white-space: nowrap;
+}
+
+.menuPrice {
+  white-space: nowrap;
+  font-weight: 400;
+}
+.menuDescription {
+  font-size: 17px;
+  margin: 14px 0;
+  color: rgba(58, 53, 53, 0.55);
+}
+/* tags line (small, subtle, left) */
+.menuTags {
+  margin-top: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 13px;
+  color: rgba(90, 129, 140, 0.55);
+  text-align: left;
+}
+
+.menuTag {
+  white-space: nowrap;
+}
+
+.tagDot {
+  color: rgba(127, 163, 173, 0.5);
+}
+
+/* divider between rows (full width, very light) */
+.menuDivider {
+  margin-top: 20px;
+  height: 1px;
+  width: 100%;
+  background: rgba(127, 163, 173, 0.16);
+}
+
+/* if your accordion container adds centering, force left */
+.serviceAccordionContent,
+.serviceTextContent {
+  text-align: left;
+}
+@media (max-width: 640px) {
+  .menuSectionTitle,
+  .menuItemTitle {
+    font-size: 23px;
+  }
+
+  .menuRow .menuRowTop {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 4px !important;
+  }
+  .menuRow .menuRight {
+    align-self: flex-start;
+    font-size: 15px;
+  }
+}

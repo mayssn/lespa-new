@@ -1,0 +1,186 @@
+/* =========================
+   ACCORDION OPEN CONTENT
+========================= */
+.serviceAccordionContent {
+  grid-column: 1 / -1;
+  margin-top: 14px;
+  padding: 50px 38px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(241, 214, 214, 0.14);
+  border-radius: 14px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.04);
+}
+
+/* optional subtle divider feeling inside the row */
+.serviceRow {
+  overflow: visible;
+  height: auto;
+}
+
+/* =========================
+   MENU
+========================= */
+.serviceMenu {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.serviceMenuSection {
+  padding-top: 4px;
+}
+
+.serviceMenuTitle {
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 0.2px;
+  color: #3f3f3f;
+  margin: 0 0 6px;
+}
+
+.serviceMenuIntro {
+  margin: 0 0 12px;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: rgba(63, 63, 63, 0.75);
+}
+
+.serviceMenuItems {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* item card */
+.serviceMenuItem {
+  padding: 12px 12px 10px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(122, 122, 122, 0.12);
+  border-radius: 12px;
+}
+
+.serviceMenuItemTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.serviceMenuItemName {
+  font-size: 15px;
+  font-weight: 500;
+  color: #2f2f2f;
+  letter-spacing: 0.2px;
+}
+
+.serviceMenuMeta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  font-size: 12.5px;
+  color: rgba(63, 63, 63, 0.7);
+}
+
+.serviceMenuDuration,
+.serviceMenuPrice {
+  white-space: nowrap;
+}
+
+.serviceMenuItemDesc {
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.65;
+  color: rgba(63, 63, 63, 0.76);
+}
+
+/* tags */
+.serviceMenuTags {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.serviceMenuTag {
+  font-size: 11.5px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(234, 243, 245, 0.9);
+  border: 1px solid rgba(122, 122, 122, 0.12);
+  color: rgba(63, 63, 63, 0.72);
+}
+
+/* =========================
+   TEXT TYPE (photo + rich text)
+========================= */
+.serviceTextWrap {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.serviceTextPhoto {
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  border: 1px solid rgba(122, 122, 122, 0.12);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  object-fit: cover;
+}
+
+.serviceTextContent {
+  min-width: 0;
+}
+
+/* Rich text styling */
+.richText p {
+  margin: 0 0 10px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: rgba(63, 63, 63, 0.82);
+}
+
+.richText a {
+  color: #2f6da8;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(47, 109, 168, 0.25);
+}
+
+.richText a:hover {
+  border-bottom-color: rgba(47, 109, 168, 0.6);
+}
+
+/* empty */
+.serviceEmpty {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: rgba(63, 63, 63, 0.65);
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 720px) {
+  .serviceAccordionContent {
+    padding: 14px 14px 16px;
+  }
+
+  .serviceTextWrap {
+    grid-template-columns: 1fr;
+  }
+
+  .serviceMenuItemTop {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .serviceMenuMeta {
+    gap: 12px;
+  }
+}

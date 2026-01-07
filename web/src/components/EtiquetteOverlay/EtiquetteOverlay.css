@@ -1,1 +1,163 @@
+.etqOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  z-index: 99999;
+}
 
+.etqModal {
+  position: relative;
+  width: min(640px, 92vw);
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 18px;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.18);
+  padding: 22px 22px 18px;
+}
+
+.etqClose {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  border: 0;
+  background: transparent;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  color: #8a8a8a;
+}
+
+.etqTitle {
+  margin: 6px 0 10px;
+  text-align: center;
+  font-size: 34px;
+  font-weight: 400;
+  color: #6f7d86;
+}
+
+.etqRule {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.08);
+  margin: 10px 0 14px;
+}
+
+.etqSubTitle {
+  margin: 4px 0 10px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 400;
+  color: #6f7d86;
+}
+
+.etqBody {
+  color: #6f6f6f;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.etqBody ul {
+  margin: 10px 0 0;
+  padding-left: 22px;
+}
+
+.etqBody li {
+  margin: 10px 0;
+}
+
+.etqThanks {
+  text-align: center;
+  margin: 18px 0 8px;
+  color: #7b7b7b;
+  font-size: 15px;
+}
+
+.etqDivider {
+  margin: 16px 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.etqDivider::before,
+.etqDivider::after {
+  content: "";
+  height: 1px;
+  width: 38%;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.etqDividerIcon {
+  margin: 0 12px;
+  color: #a8b4bc;
+  font-size: 14px;
+}
+
+.etqFooter {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 14px;
+  color: #7a7a7a;
+}
+
+.etqActionLink {
+  color: #5aa7c0;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.etqNumber {
+  border: 0;
+  background: transparent;
+  color: #5a7e8f;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0 2px;
+  font: inherit;
+}
+
+.etqNumber:focus,
+.etqNumber:focus-visible,
+.etqClose:focus,
+.etqClose:focus-visible,
+.etqActionLink:focus,
+.etqActionLink:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.etqMuted,
+.etqMutedInline {
+  color: #9a9a9a;
+}
+
+.etqCopied {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 12px;
+  color: #6aa56a;
+  opacity: 0;
+  transform: translateY(-2px);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.etqCopied.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Optional: slightly tighter on small screens */
+@media (max-width: 520px) {
+  .etqModal {
+    padding: 18px 16px 16px;
+  }
+  .etqTitle {
+    font-size: 30px;
+  }
+  .etqSubTitle {
+    font-size: 21px;
+  }
+}

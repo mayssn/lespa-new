@@ -8,7 +8,8 @@
   background: rgba(255, 255, 255, 0.72);
   border: 1px solid rgba(241, 214, 214, 0.14);
   border-radius: 14px;
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.04);
+  box-shadow: none;
+  border: 1.5px dotted #c2d6e7;
 }
 
 /* optional subtle divider feeling inside the row */

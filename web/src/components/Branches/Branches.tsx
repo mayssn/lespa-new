@@ -4,10 +4,12 @@ import "./Branches.css";
 
 import { sanity } from "../../sanity/client";
 import { createImageUrlBuilder } from "@sanity/image-url";
+import { PortableText } from "@portabletext/react";
 
 const builder = createImageUrlBuilder(sanity);
 const urlFor = (src: any) =>
   src ? builder.image(src).width(240).height(180).fit("max").url() : "";
+
 const onlyDigits = (s = "") => String(s).replace(/[^\d+]/g, "");
 const toTelHref = (tel: string) => {
   const clean = onlyDigits(tel);
@@ -36,11 +38,13 @@ const MapIcon = () => (
   </svg>
 );
 
+
 const Branches = () => {
   const [data, setData] = useState<{ branchesTitle: string; list: any[] }>({
     branchesTitle: "Our Branches",
     list: [],
   });
+  const [openFindUs, setOpenFindUs] = useState<null | { title: string; findUs: any }>(null);
 
   useEffect(() => {
     const query = `*[_type == "homePage"][0]{
@@ -54,7 +58,8 @@ const Branches = () => {
           telephone,
           callContact,
           whatsappContact,
-          mapLink
+          mapLink,
+          findUs
         }
       }
     }`;
@@ -152,11 +157,44 @@ const Branches = () => {
                     Open in Maps
                   </button>
                 )}
+  {/* ✅ NEW: Are you lost? button */}
+                {b.findUs?.length ? (
+                  <button
+                    type="button"
+                    className="lostBtn"
+                    onClick={() => setOpenFindUs({ title: b.title, findUs: b.findUs })}
+                  >
+                    Are you lost?
+                  </button>
+                ) : null}
               </div>
             </article>
           );
         })}
       </div>
+
+
+      {/* ✅ NEW: Overlay / Modal */}
+      {openFindUs ? (
+        <div
+          className="findUsOverlay"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setOpenFindUs(null)} // click outside closes
+        >
+          <div className="findUsModal" onClick={(e) => e.stopPropagation()}>
+            <div className="findUsHeader">
+              <div className="findUsTitle">{openFindUs.title}</div>
+              <button className="findUsClose" onClick={() => setOpenFindUs(null)} aria-label="Close">
+                ×
+              </button>
+            </div>
+            <div className="findUsBody">
+              <PortableText value={openFindUs.findUs} />
+            </div>
+          </div>
+        </div>
+      ) : null}
     </section>
   );
 };

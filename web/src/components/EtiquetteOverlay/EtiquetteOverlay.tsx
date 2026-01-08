@@ -1,5 +1,6 @@
 // Overlay component removed
 import { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./EtiquetteOverlay.css";
 
 import { sanity } from "../../sanity/client";
@@ -14,7 +15,7 @@ type EtiquetteDoc = {
 };
 
 type Props = {
-  onClose: () => void;
+  onClose?: () => void;
 };
 
 const onlyDigits = (s = "") => String(s).replace(/[^\d+]/g, "");
@@ -30,6 +31,7 @@ const toWaHref = (wa: string) => {
 };
 
 export default function EtiquetteOverlay({ onClose }: Props) {
+  const navigate = useNavigate();
   const [data, setData] = useState<EtiquetteDoc | null>(null);
   const [copied, setCopied] = useState(false);
 
@@ -41,22 +43,23 @@ export default function EtiquetteOverlay({ onClose }: Props) {
     );
   }, []);
 
-  useEffect(() => {
-    // scroll lock
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev;
-    };
-  }, []);
+  // (Scroll lock removed: allow overlay modal to scroll)
+
+  // Unified close handler: calls prop if present, else navigates home
+  const handleClose = () => {
+    // Save scroll position before navigating away
+    sessionStorage.setItem("etqScrollY", String(window.scrollY));
+    if (onClose) onClose();
+    else navigate("/");
+  };
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") handleClose();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [onClose]);
+  }, []); // don't depend on handleClose to avoid re-binding
 
   useEffect(() => {
     const query = `*[_type == "etiquetteAndVouchers"][0]{
@@ -101,14 +104,16 @@ export default function EtiquetteOverlay({ onClose }: Props) {
       className="etqOverlay"
       role="dialog"
       aria-modal="true"
-      onClick={onClose}
+      onClick={handleClose}
     >
       <div className="etqModal" onClick={(e) => e.stopPropagation()}>
-        <button className="etqClose" onClick={onClose} aria-label="Close">
+        <button className="etqClose" onClick={handleClose} aria-label="Close">
           ×
         </button>
 
-        <h2 className="etqTitle">{data?.etiquetteTitle || "Spa Etiquette"}</h2>
+        <h2 className="etqSubTitle">
+          {data?.etiquetteTitle || "Spa Etiquette"}
+        </h2>
         <div className="etqRule" />
 
         <div className="etqBody">
@@ -125,9 +130,9 @@ export default function EtiquetteOverlay({ onClose }: Props) {
           <span className="etqDividerIcon">✦</span>
         </div>
 
-        <h3 className="etqSubTitle">
+        <h2 className="etqSubTitle">
           {data?.voucherTitle || "Gift Vouchers Terms and Conditions"}
-        </h3>
+        </h2>
 
         <div className="etqBody">
           {data?.voucherBullets?.length ? (
@@ -153,13 +158,13 @@ export default function EtiquetteOverlay({ onClose }: Props) {
                 target="_blank"
                 rel="noreferrer"
               >
-                WhatsApp
+                whatsApp
               </a>
               <span> us on </span>
             </>
           ) : (
             <>
-              <span className="etqMutedInline">call or WhatsApp us on </span>
+              <span className="etqMutedInline">Call or WhatsApp us on </span>
             </>
           )}
 

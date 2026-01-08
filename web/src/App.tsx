@@ -1,32 +1,12 @@
-import "./App.css";
-import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import EtiquettePage from "./pages/EtiquettePage";
 
-import Hero from "./components/Hero";
-import About from "./components/About";
-import Services from "./components/Services";
-import Branches from "./components/Branches";
-import Footer from "./components/Footer";
-import Waves from "./components/Waves/Waves";
-import EtiquetteOverlay from "./components/EtiquetteOverlay";
-
-function App() {
-  const [showEtiquette, setShowEtiquette] = useState(false);
-
+export default function App() {
   return (
-    <>
-      <Hero />
-      <About />
-      <Services />
-      <Waves />
-      <Branches onOpenEtiquette={() => setShowEtiquette(true)} />
-
-      {showEtiquette && (
-        <EtiquetteOverlay onClose={() => setShowEtiquette(false)} />
-      )}
-
-      <Footer />
-    </>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/etiquette" element={<EtiquettePage />} />
+    </Routes>
   );
 }
-
-export default App;

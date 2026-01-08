@@ -16,6 +16,8 @@
   border-radius: 18px;
   box-shadow: 0 25px 70px rgba(0, 0, 0, 0.18);
   padding: 22px 22px 18px;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .etqClose {

@@ -1,79 +1,59 @@
 import React from "react";
-import type { ServiceMenuSection } from "../../sanity/types";
+import type { ServiceMenuItem } from "../../sanity/types";
 import "./ServiceMenu.css";
 
 type Props = {
-  sections: ServiceMenuSection[];
+  menuItems: ServiceMenuItem[];
 };
 
-const ServiceMenu: React.FC<Props> = ({ sections }) => {
-  if (!sections || sections.length === 0) return null;
-
-  console.log("SECTIONS", sections);
+const ServiceMenu: React.FC<Props> = ({ menuItems }) => {
+  console.log("ServiceMenu Items Received:", menuItems);
+  if (!menuItems || menuItems.length === 0) {
+    return <div className="menuEmpty">No items found for this service.</div>;
+  }
 
   return (
     <div className="serviceMenu">
-      {sections.map((section) => (
-        <React.Fragment key={section._key}>
-          <div className="serviceMenuSection">
-            {section.title && (
-              <h3 className="serviceMenuTitle">{section.title}</h3>
-            )}
-            <div className="menuList">
-              {(section.items || []).map((item, i) => (
-                <div key={item._key} className="menuRow">
-                  <div className="menuRowTop">
-                    <div className="menuItemTitle">{item.name}</div>
+      <div className="menuList">
+        {menuItems.map((item, i) => (
+          <div key={item._key} className="menuRow">
+            <div className="menuRowTop">
+              <div className="menuItemTitle">{item.name}</div>
 
-                    <div className="menuRight">
-                      {item.duration && (
-                        <span className="menuDuration">{item.duration}</span>
-                      )}
-                      {item.price && (
-                        <span className="menuPrice">{item.price}</span>
-                      )}
-                    </div>
-                  </div>
-
-                  {item.description && (
-                    <div className="menuDescription">{item.description}</div>
-                  )}
-
-                  {item.bullets && item.bullets.length > 0 && (
-                    <ul className="menuBullets">
-                      {item.bullets.map((bullet, idx) => (
-                        <li key={idx} className="menuBullet">
-                          {bullet}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-
-                  {!!(item.tags && item.tags.length) && (
-                    <div className="menuTags">
-                      {item.tags
-                        .slice()
-                        .sort((a, b) => (a.order ?? 999) - (b.order ?? 999))
-                        .map((t, idx) => (
-                          <span key={t._id} className="menuTag">
-                            {t.title}
-                            {idx !== item.tags.length - 1 && (
-                              <span className="tagDot"> • </span>
-                            )}
-                          </span>
-                        ))}
-                    </div>
-                  )}
-
-                  {i !== (section.items?.length || 0) - 1 && (
-                    <div className="menuDivider" />
-                  )}
-                </div>
-              ))}
+              <div className="menuRight">
+                {item.duration && (
+                  <span className="menuDuration">
+                    {item.duration}
+                  </span>
+                )}
+                {item.price && <span className="menuPrice">{item.price}</span>}
+              </div>
             </div>
+
+            {item.description && (
+              <div className="menuDescription">{item.description}</div>
+            )}
+
+            {!!(item.tags && item.tags.length) && (
+              <div className="menuTags">
+                {item.tags
+                  .slice()
+                  .sort((a, b: any) => (a.order ?? 999) - (b.order ?? 999))
+                  .map((t: any, idx: number) => (
+                    <span key={t._id} className="menuTag">
+                      {t.title}
+                      {idx !== item.tags.length - 1 && (
+                        <span className="tagDot"> • </span>
+                      )}
+                    </span>
+                  ))}
+              </div>
+            )}
+
+            {i !== menuItems.length - 1 && <div className="menuDivider" />}
           </div>
-        </React.Fragment>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

@@ -21,24 +21,26 @@ export const servicesQuery = `
 *[_type == "service"] | order(order asc, title asc) {
   _id,
   title,
-  serviceType,
+  "serviceType": coalesce(
+    serviceType,
+    select(
+      count(menuItems) > 0 => "menu",
+      count(sections) > 0 => "menu",
+      "text"
+    )
+  ),
   order,
   icon,
 
-  // menu
-  sections[] {
+  "menuItems": coalesce(menuItems, sections[0].items, [])[] {
     ...,
-    items[] {
-      ...,
-      tags[]->{
-        _id,
-        title,
-        order
-      }
+    tags[]->{
+      _id,
+      title,
+      order
     }
   },
 
-  // text
   textPhoto,
   textPhotoAlt,
   text

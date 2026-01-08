@@ -43,7 +43,7 @@ const ServiceAccordionItem: React.FC<ServiceAccordionItemProps> = ({
       {open && (
         <div className="serviceAccordionContent">
           {service.serviceType === "menu" ? (
-            <ServiceMenu sections={service.sections || []} />
+            <ServiceMenu menuItems={service.menuItems || []} />
           ) : (
             <ServiceText
               text={service.text}

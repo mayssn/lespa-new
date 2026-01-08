@@ -4,43 +4,15 @@ import "./Services.css";
 import { sanity } from "../../sanity/client";
 import ServiceAccordionItem from "./ServiceAccordionItem";
 import type { Service } from "../../sanity/types";
+import { servicesQuery } from "../../sanity/queries";
 
 const Services = () => {
   const [services, setServices] = useState<Service[]>([]);
   const [openId, setOpenId] = useState<string | null>(null);
 
   useEffect(() => {
-    const query = `*[_type == "service"] | order(order asc, title asc) {
-  _id,
-  title,
-  serviceType,
-  order,
-  icon,
-  sections[] {
-    _key,
-    title,
-    introText,
-    items[] {
-      _key,
-      name,
-      description,
-      duration,
-      price,
-  tags[]->{
-    _id,
-    title,
-    order
-  
-      }
-    }
-  },
-  textPhoto,
-  textPhotoAlt,
-  text
-}`;
-
     sanity
-      .fetch(query)
+      .fetch(servicesQuery)
       .then((data) => setServices(data))
       .catch(console.error);
   }, []);

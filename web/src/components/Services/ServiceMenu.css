@@ -121,6 +121,15 @@
 .serviceTextContent {
   text-align: left;
 }
+
+.menuEmpty {
+  padding: 20px;
+  text-align: center;
+  color: #999;
+  font-family: "Gantari", sans-serif;
+  font-style: italic;
+}
+
 @media (max-width: 640px) {
   .menuSectionTitle,
   .menuItemTitle {

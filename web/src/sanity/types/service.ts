@@ -9,16 +9,10 @@ export type ServiceTag = {
 export type ServiceMenuItem = {
   _key: string;
   name: string;
-  duration?: string;
-  price?: string;
+  duration: string;
+  price: string;
+  description?: string;
   tags?: ServiceTag[];
-};
-
-export type ServiceMenuSection = {
-  _key: string;
-  title?: string;
-  introText?: string;
-  items?: ServiceMenuItem[];
 };
 
 export type Service = {
@@ -29,6 +23,7 @@ export type Service = {
 
   icon?: any;
 
+  menuItems?: ServiceMenuItem[];
   sections?: ServiceMenuSection[];
 
   textPhoto?: any;

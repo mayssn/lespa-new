@@ -22,9 +22,7 @@ const ServiceMenu: React.FC<Props> = ({ menuItems }) => {
 
               <div className="menuRight">
                 {item.duration && (
-                  <span className="menuDuration">
-                    {item.duration}
-                  </span>
+                  <span className="menuDuration">{item.duration}</span>
                 )}
                 {item.price && <span className="menuPrice">{item.price}</span>}
               </div>
@@ -32,6 +30,16 @@ const ServiceMenu: React.FC<Props> = ({ menuItems }) => {
 
             {item.description && (
               <div className="menuDescription">{item.description}</div>
+            )}
+
+            {item.bullets && item.bullets.length > 0 && (
+              <ul className="menuBullets">
+                {item.bullets.map((bullet, idx) => (
+                  <li key={idx} className="menuBullet">
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
             )}
 
             {!!(item.tags && item.tags.length) && (

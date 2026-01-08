@@ -22,40 +22,42 @@ const ServiceText: React.FC<Props> = ({ title, text, photo, photoAlt }) => {
         />
       )}
 
-      <div className="serviceTextContent">
-        {text && text.length ? (
-          <div className="richText">
-            <PortableText
-              value={text}
-              components={{
-                block: {
-                  normal: ({ children }) => <p>{children}</p>,
-                },
-                marks: {
-                  link: ({ children, value }) => {
-                    const href = value?.href || "#";
-                    const isExternal = href.startsWith("http");
-                    return (
-                      <a
-                        href={href}
-                        target={isExternal ? "_blank" : undefined}
-                        rel={isExternal ? "noreferrer" : undefined}
-                      >
-                        {children}
-                      </a>
-                    );
+      <div className="serviceTextContentWrapper">
+        <div className="serviceTextContent">
+          {text && text.length ? (
+            <div className="richText">
+              <PortableText
+                value={text}
+                components={{
+                  block: {
+                    normal: ({ children }) => <p>{children}</p>,
                   },
-                  internalLink: ({ children, value }) => {
-                    const href = value?.path || "#";
-                    return <a href={href}>{children}</a>;
+                  marks: {
+                    link: ({ children, value }) => {
+                      const href = value?.href || "#";
+                      const isExternal = href.startsWith("http");
+                      return (
+                        <a
+                          href={href}
+                          target={isExternal ? "_blank" : undefined}
+                          rel={isExternal ? "noreferrer" : undefined}
+                        >
+                          {children}
+                        </a>
+                      );
+                    },
+                    internalLink: ({ children, value }) => {
+                      const href = value?.path || "#";
+                      return <a href={href}>{children}</a>;
+                    },
                   },
-                },
-              }}
-            />
-          </div>
-        ) : (
-          <p className="serviceEmpty">No text yet.</p>
-        )}
+                }}
+              />
+            </div>
+          ) : (
+            <p className="serviceEmpty">No text yet.</p>
+          )}
+        </div>
       </div>
     </div>
   );

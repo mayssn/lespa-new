@@ -2,41 +2,48 @@
 
 .serviceTextWrap {
   display: grid;
-  grid-template-columns: 220px 1fr;
+  grid-template-columns: 140px 1fr;
   gap: 24px;
-  align-items: start;
+  align-items: stretch; /* key: both columns same row height */
   width: 100%;
 }
 
-/* when there is NO image, the grid collapses naturally */
+/* when there is NO image */
 .serviceTextWrap:not(:has(.serviceTextPhoto)) {
   grid-template-columns: 1fr;
 }
 
-/* image */
-.serviceTextPhoto {
-  width: 100%;
-  height: auto;
-  display: block; /* remove whitespace below */
+/* IMAGE */
+.serviceTextWrap .serviceTextPhoto {
+  height: 240px; /* use explicit height (not max-height) */
+  display: block;
   border-radius: 14px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-  object-fit: contain; /* ensures whole image is visible */
+
+  object-fit: fill; /* stretches, NEVER crops */
+}
+
+/* TEXT COLUMN: same height as image, centered vertically */
+.serviceTextContentWrapper {
+  height: 240px; /* match image height */
+  display: flex;
+  align-items: center; /* vertical center */
+  width: 100%;
+  margin-left: 20px;
 }
 
 /* text */
 .serviceTextContent {
   font-size: 17px;
-  margin: 14px 0;
   color: rgba(58, 53, 53, 0.55);
   line-height: 1.7;
+  width: 100%;
 }
 
-/* portable text paragraphs */
 .serviceTextContent p {
   margin: 0 0 14px;
 }
 
-/* links inside text */
 .serviceTextContent a {
   color: #7fa3ad;
   text-decoration: none;
@@ -54,11 +61,17 @@
     gap: 16px;
   }
 
-  .serviceTextPhoto {
+  .serviceTextWrap .serviceTextPhoto {
     width: 100%;
-    max-width: 400px; /* don't let it get crazy big on tablets */
-    height: auto;
-    max-height: none; /* remove the cap that caused cropping/squishing */
+    max-width: 400px;
+    height: 220px; /* choose mobile height */
     margin: 0 auto;
+    object-fit: fill; /* still no crop */
+  }
+
+  .serviceTextContentWrapper {
+    height: auto; /* don’t force same height on mobile */
+    display: block;
+    margin-left: 0;
   }
 }

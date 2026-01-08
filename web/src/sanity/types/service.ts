@@ -12,6 +12,7 @@ export type ServiceMenuItem = {
   duration: string;
   price: string;
   description?: string;
+  bullets?: string[];
   tags?: ServiceTag[];
 };
 

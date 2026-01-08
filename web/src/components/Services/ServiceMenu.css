@@ -7,18 +7,6 @@
   margin: 0;
 }
 
-.serviceMenuTitle {
-  font-family: "EB Garamond", serif;
-  font-size: 20px;
-  font-weight: 500;
-  color: #5a818c;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin: 0 0 20px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  padding-bottom: 10px;
-}
-
 /* ===== LIST ===== */
 .menuList {
   display: flex;
@@ -27,7 +15,7 @@
 
 /* each row */
 .menuRow {
-  padding: 0px 0 22px;
+  padding: 0px 0 8px;
 }
 
 /* top line: left title, right meta */
@@ -40,9 +28,9 @@
 
 .menuItemTitle {
   font-weight: 400;
-  font-size: 25px; /* Image 2-ish */
+  font-size: 16px; /* Image 2-ish */
   letter-spacing: 0.15px;
-  color: #7fa3ad;
+  color: #517a85;
   text-align: left;
 }
 
@@ -51,8 +39,8 @@
   display: inline-flex;
   align-items: baseline;
   gap: 22px;
-  font-size: 16px; /* smaller */
-  color: rgba(63, 63, 63, 0.6);
+  font-size: 15px; /* smaller */
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .menuDuration {
@@ -64,19 +52,20 @@
   font-weight: 400;
 }
 .menuDescription {
-  font-size: 17px;
-  margin: 14px 0;
-  color: rgba(58, 53, 53, 0.55);
+  font-size: 13px;
+  margin: 5px 0;
+  color: rgba(0, 0, 0, 0.55);
 }
 
 .menuBullets {
+  font-size: 13px;
   list-style: none;
   padding: 0;
   margin: -4px 0 10px 0; /* slight overlap with description margin */
 }
 
 .menuBullet {
-  font-size: 16px;
+  font-size: 13px;
   line-height: 1.5;
   color: rgba(58, 53, 53, 0.65);
   position: relative;
@@ -92,10 +81,10 @@
 }
 /* tags line (small, subtle, left) */
 .menuTags {
-  margin-top: 10px;
+  margin-top: 0px;
   text-transform: uppercase;
   letter-spacing: 2px;
-  font-size: 13px;
+  font-size: 11px;
   color: rgba(90, 129, 140, 0.55);
   text-align: left;
 }
@@ -110,7 +99,7 @@
 
 /* divider between rows (full width, very light) */
 .menuDivider {
-  margin-top: 20px;
+  margin-top: 4px;
   height: 1px;
   width: 100%;
   background: rgba(127, 163, 173, 0.16);

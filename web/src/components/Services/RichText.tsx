@@ -30,6 +30,10 @@ const RichText: React.FC<Props> = ({ value }) => {
                 </a>
               );
             },
+            internalLink: ({ children, value }) => {
+              const href = value?.path || "#";
+              return <a href={href}>{children}</a>;
+            },
           },
         }}
       />

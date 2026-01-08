@@ -6,6 +6,28 @@ import "./EtiquetteOverlay.css";
 import { sanity } from "../../sanity/client";
 import { PortableText } from "@portabletext/react";
 
+const portableComponents = {
+  marks: {
+    link: ({ children, value }: any) => {
+      const href = value?.href || "#";
+      const isExternal = href.startsWith("http");
+      return (
+        <a
+          href={href}
+          target={isExternal ? "_blank" : undefined}
+          rel={isExternal ? "noreferrer" : undefined}
+        >
+          {children}
+        </a>
+      );
+    },
+    internalLink: ({ children, value }: any) => {
+      const href = value?.path || "#";
+      return <a href={href}>{children}</a>;
+    },
+  },
+};
+
 type EtiquetteDoc = {
   etiquetteTitle?: string;
   etiquetteBullets?: any;
@@ -118,7 +140,10 @@ export default function EtiquetteOverlay({ onClose }: Props) {
 
         <div className="etqBody">
           {data?.etiquetteBullets?.length ? (
-            <PortableText value={data.etiquetteBullets} />
+            <PortableText
+              value={data.etiquetteBullets}
+              components={portableComponents}
+            />
           ) : (
             <p className="etqMuted">No etiquette content found.</p>
           )}
@@ -136,7 +161,10 @@ export default function EtiquetteOverlay({ onClose }: Props) {
 
         <div className="etqBody">
           {data?.voucherBullets?.length ? (
-            <PortableText value={data.voucherBullets} />
+            <PortableText
+              value={data.voucherBullets}
+              components={portableComponents}
+            />
           ) : (
             <p className="etqMuted">No voucher terms found.</p>
           )}

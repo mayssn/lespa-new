@@ -6,6 +6,28 @@ import { sanity } from "../../sanity/client";
 import { createImageUrlBuilder } from "@sanity/image-url";
 import { PortableText } from "@portabletext/react";
 
+const portableComponents = {
+  marks: {
+    link: ({ children, value }: any) => {
+      const href = value?.href || "#";
+      const isExternal = href.startsWith("http");
+      return (
+        <a
+          href={href}
+          target={isExternal ? "_blank" : undefined}
+          rel={isExternal ? "noreferrer" : undefined}
+        >
+          {children}
+        </a>
+      );
+    },
+    internalLink: ({ children, value }: any) => {
+      const href = value?.path || "#";
+      return <a href={href}>{children}</a>;
+    },
+  },
+};
+
 const builder = createImageUrlBuilder(sanity);
 const urlFor = (src: any) =>
   src ? builder.image(src).width(240).height(180).fit("max").url() : "";
@@ -38,13 +60,15 @@ const MapIcon = () => (
   </svg>
 );
 
-
 const Branches = () => {
   const [data, setData] = useState<{ branchesTitle: string; list: any[] }>({
     branchesTitle: "Our Branches",
     list: [],
   });
-  const [openFindUs, setOpenFindUs] = useState<null | { title: string; findUs: any }>(null);
+  const [openFindUs, setOpenFindUs] = useState<null | {
+    title: string;
+    findUs: any;
+  }>(null);
 
   useEffect(() => {
     const query = `*[_type == "homePage"][0]{
@@ -157,12 +181,14 @@ const Branches = () => {
                     Open in Maps
                   </button>
                 )}
-  {/* ✅ NEW: Are you lost? button */}
+                {/* ✅ NEW: Are you lost? button */}
                 {b.findUs?.length ? (
                   <button
                     type="button"
                     className="lostBtn"
-                    onClick={() => setOpenFindUs({ title: b.title, findUs: b.findUs })}
+                    onClick={() =>
+                      setOpenFindUs({ title: b.title, findUs: b.findUs })
+                    }
                   >
                     Are you lost?
                   </button>
@@ -172,7 +198,6 @@ const Branches = () => {
           );
         })}
       </div>
-
 
       {/* ✅ NEW: Overlay / Modal */}
       {openFindUs ? (
@@ -185,12 +210,19 @@ const Branches = () => {
           <div className="findUsModal" onClick={(e) => e.stopPropagation()}>
             <div className="findUsHeader">
               <div className="findUsTitle">{openFindUs.title}</div>
-              <button className="findUsClose" onClick={() => setOpenFindUs(null)} aria-label="Close">
+              <button
+                className="findUsClose"
+                onClick={() => setOpenFindUs(null)}
+                aria-label="Close"
+              >
                 ×
               </button>
             </div>
             <div className="findUsBody">
-              <PortableText value={openFindUs.findUs} />
+              <PortableText
+                value={openFindUs.findUs}
+                components={portableComponents}
+              />
             </div>
           </div>
         </div>

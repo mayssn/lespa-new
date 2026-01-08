@@ -45,6 +45,10 @@ const ServiceText: React.FC<Props> = ({ title, text, photo, photoAlt }) => {
                       </a>
                     );
                   },
+                  internalLink: ({ children, value }) => {
+                    const href = value?.path || "#";
+                    return <a href={href}>{children}</a>;
+                  },
                 },
               }}
             />

@@ -11,11 +11,9 @@ const components = {
         </a>
       );
     },
+
     internalLink: ({ value, children }: any) => {
-      let href = value?.slug;
-      if (!href && value?.reference?._ref) {
-        href = `/${value.reference._ref}`;
-      }
+      const href = value?.path;
       if (!href) return <span>{children}</span>;
       return <a href={href}>{children}</a>;
     },

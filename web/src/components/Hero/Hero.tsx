@@ -1,5 +1,6 @@
 import "./Hero.css";
 import videoSrc from "@/assets/waterloop.mp4";
+import posterSrc from "@/assets/snap.png";
 import { useEffect, useState } from "react";
 import { sanity } from "@/sanity/client";
 import { homePageQuery } from "@/sanity/queries";
@@ -36,6 +37,7 @@ const Hero = () => {
       <video
         className="hero-video"
         src={videoSrc}
+        poster={posterSrc}
         autoPlay
         loop
         muted

@@ -16,6 +16,9 @@ const ServiceMenu: React.FC<Props> = ({ sections }) => {
       {sections.map((section) => (
         <React.Fragment key={section._key}>
           <div className="serviceMenuSection">
+            {section.title && (
+              <h3 className="serviceMenuTitle">{section.title}</h3>
+            )}
             <div className="menuList">
               {(section.items || []).map((item, i) => (
                 <div key={item._key} className="menuRow">
@@ -34,6 +37,16 @@ const ServiceMenu: React.FC<Props> = ({ sections }) => {
 
                   {item.description && (
                     <div className="menuDescription">{item.description}</div>
+                  )}
+
+                  {item.bullets && item.bullets.length > 0 && (
+                    <ul className="menuBullets">
+                      {item.bullets.map((bullet, idx) => (
+                        <li key={idx} className="menuBullet">
+                          {bullet}
+                        </li>
+                      ))}
+                    </ul>
                   )}
 
                   {!!(item.tags && item.tags.length) && (

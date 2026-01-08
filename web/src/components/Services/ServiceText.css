@@ -17,8 +17,10 @@
 .serviceTextPhoto {
   width: 100%;
   height: auto;
+  display: block; /* remove whitespace below */
   border-radius: 14px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  object-fit: contain; /* ensures whole image is visible */
 }
 
 /* text */
@@ -53,6 +55,10 @@
   }
 
   .serviceTextPhoto {
-    max-height: 220px;
+    width: 100%;
+    max-width: 400px; /* don't let it get crazy big on tablets */
+    height: auto;
+    max-height: none; /* remove the cap that caused cropping/squishing */
+    margin: 0 auto;
   }
 }

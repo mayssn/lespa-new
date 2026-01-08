@@ -27,7 +27,15 @@ export const servicesQuery = `
 
   // menu
   sections[] {
-    ...
+    ...,
+    items[] {
+      ...,
+      tags[]->{
+        _id,
+        title,
+        order
+      }
+    }
   },
 
   // text

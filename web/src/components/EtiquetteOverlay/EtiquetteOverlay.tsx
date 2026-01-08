@@ -69,8 +69,6 @@ export default function EtiquetteOverlay({ onClose }: Props) {
 
   // Unified close handler: calls prop if present, else navigates home
   const handleClose = () => {
-    // Save scroll position before navigating away
-    sessionStorage.setItem("etqScrollY", String(window.scrollY));
     if (onClose) onClose();
     else navigate("/");
   };

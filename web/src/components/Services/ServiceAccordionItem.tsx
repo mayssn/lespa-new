@@ -22,7 +22,7 @@ const ServiceAccordionItem: React.FC<ServiceAccordionItemProps> = ({
         <div className="serviceIconBox">
           <img
             className="serviceIcon"
-            src={urlFor(service.icon)}
+            src={urlFor(service.icon).width(120).height(120).fit("max").url()}
             alt={`${service.title} icon`}
           />
         </div>

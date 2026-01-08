@@ -9,7 +9,7 @@
   border: 1px solid rgba(241, 214, 214, 0.14);
   border-radius: 14px;
   box-shadow: none;
-  border: 1.5px dotted #c2d6e7;
+  border: 1px dotted #c2d6e7;
 }
 
 /* optional subtle divider feeling inside the row */
@@ -29,21 +29,6 @@
 
 .serviceMenuSection {
   padding-top: 4px;
-}
-
-.serviceMenuTitle {
-  font-weight: 500;
-  font-size: 18px;
-  letter-spacing: 0.2px;
-  color: #3f3f3f;
-  margin: 0 0 6px;
-}
-
-.serviceMenuIntro {
-  margin: 0 0 12px;
-  font-size: 13.5px;
-  line-height: 1.7;
-  color: rgba(63, 63, 63, 0.75);
 }
 
 .serviceMenuItems {

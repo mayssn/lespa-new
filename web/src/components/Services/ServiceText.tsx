@@ -17,7 +17,7 @@ const ServiceText: React.FC<Props> = ({ title, text, photo, photoAlt }) => {
       {photo && (
         <img
           className="serviceTextPhoto"
-          src={urlFor(photo)}
+          src={urlFor(photo).width(800).fit("max").url()}
           alt={photoAlt || `${title} photo`}
         />
       )}
